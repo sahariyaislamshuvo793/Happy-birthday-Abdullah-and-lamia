@@ -1,1 +1,547 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Abdullah &amp; Lamia — November 13 &amp; 14</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Editorial Typography: Cormorant Garamond & Plus Jakarta Sans -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        serif: ['Cormorant Garamond', 'Georgia', 'serif'],
+                        sans: ['Plus Jakarta Sans', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'],
+                    },
+                    colors: {
+                        paper: '#FAF9F6',
+                        paperAlt: '#F3F1EC',
+                        ink: '#141414',
+                        muted: '#6E6B64',
+                        hairline: '#E5E2DC',
+                        champagne: '#B89658',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        html {
+            scroll-behavior: smooth;
+            background-color: #FAF9F6;
+            color: #141414;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: #FAF9F6;
+            color: #141414;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        /* Subtle editorial reveal animation */
+        .fade-up {
+            opacity: 0;
+            transform: translateY(16px);
+            transition: opacity 0.85s cubic-bezier(0.22, 1, 0.36, 1), transform 0.85s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+
+        .fade-up.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Refined image zoom */
+        .editorial-img {
+            transition: transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+        .group:hover .editorial-img {
+            transform: scale(1.025);
+        }
+
+        /* Print optimization so user can save as a clean PDF keepsake */
+        @media print {
+            .no-print {
+                display: none !important;
+            }
+            body {
+                background-color: #FFFFFF !important;
+            }
+            .fade-up {
+                opacity: 1 !important;
+                transform: none !important;
+            }
+        }
+    </style>
+</head>
+<body class="min-h-screen selection:bg-[#141414] selection:text-[#FAF9F6]">
+
+    <!-- Subtle Champagne Confetti Canvas (Only triggered on button interaction) -->
+    <canvas id="confettiCanvas" class="fixed inset-0 w-full h-full pointer-events-none z-50 no-print"></canvas>
+
+    <!-- Discreet Editorial Toast Notification -->
+    <div id="toast" class="fixed bottom-6 right-6 z-50 transform translate-y-6 opacity-0 transition-all duration-300 pointer-events-none no-print">
+        <div class="bg-[#141414] text-[#FAF9F6] px-5 py-3 text-xs tracking-wide shadow-xl flex items-center gap-3">
+            <span class="w-1.5 h-1.5 rounded-full bg-[#B89658]"></span>
+            <span id="toastText">Updated</span>
+        </div>
+    </div>
+
+    <!-- Top Navigation / Keepsake Bar -->
+    <nav class="border-b border-hairline bg-paper/90 backdrop-blur-md sticky top-0 z-30 no-print">
+        <div class="max-w-5xl mx-auto px-6 sm:px-10 h-14 flex items-center justify-between text-xs tracking-[0.16em] uppercase text-muted">
+            <span class="text-ink font-medium">A &amp; L — Keepsake Edition</span>
+            <div class="flex items-center gap-6">
+                <a href="#profiles" class="hover:text-ink transition-colors hidden sm:inline">Profiles</a>
+                <a href="#letter" class="hover:text-ink transition-colors hidden sm:inline">The Letter</a>
+                <a href="#gallery" class="hover:text-ink transition-colors hidden sm:inline">Moments</a>
+                <button onclick="window.print()" class="text-ink border-b border-ink pb-0.5 hover:opacity-60 transition-opacity cursor-pointer">
+                    Save Keepsake
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Editorial Container -->
+    <main class="max-w-5xl mx-auto px-6 sm:px-10">
+
+        <!-- 1. EDITORIAL COVER / HERO -->
+        <header class="py-20 sm:py-28 md:py-32 border-b border-hairline text-center fade-up">
+            <p class="text-[11px] sm:text-xs uppercase tracking-[0.28em] text-muted mb-6">
+                November 13 &amp; 14 &mdash; Two Days, One Story
+            </p>
+
+            <h1 class="font-serif text-5xl sm:text-7xl md:text-[84px] font-normal tracking-tight text-ink leading-[1.05] mb-7">
+                Abdullah <span class="italic font-normal text-champagne">&amp;</span> Lamia
+            </h1>
+
+            <p class="max-w-lg mx-auto text-sm sm:text-base text-muted font-light leading-relaxed">
+                A quiet tribute to two consecutive birthdays, a thoughtful partnership, and a bond that feels every bit like family.
+            </p>
+
+            <!-- Minimal Date Index -->
+            <div class="mt-12 inline-flex items-center divide-x divide-hairline border border-hairline bg-paperAlt/60 text-xs">
+                <div class="px-6 py-3.5 text-left">
+                    <span class="block text-[10px] uppercase tracking-[0.2em] text-muted">13 November</span>
+                    <span class="font-serif text-lg text-ink">Abdullah</span>
+                </div>
+                <div class="px-6 py-3.5 text-left">
+                    <span class="block text-[10px] uppercase tracking-[0.2em] text-muted">14 November</span>
+                    <span class="font-serif text-lg text-ink">Lamia</span>
+                </div>
+            </div>
+        </header>
+
+        <!-- 2. DUAL PORTRAIT PROFILES -->
+        <section id="profiles" class="py-20 sm:py-24 border-b border-hairline fade-up">
+            <div class="flex flex-col sm:flex-row sm:items-end justify-between mb-12 gap-3">
+                <div>
+                    <p class="text-[11px] uppercase tracking-[0.24em] text-muted mb-2">01 &mdash; The Couple</p>
+                    <h2 class="font-serif text-3xl sm:text-4xl font-normal text-ink">Husband &amp; Wife</h2>
+                </div>
+                <p class="text-xs text-muted no-print">
+                    Select <span class="text-ink underline underline-offset-4">Upload Photo</span> on either portrait to personalize.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-16">
+
+                <!-- PROFILE 1: ABDULLAH -->
+                <article class="group">
+                    <div class="relative aspect-[4/5] w-full bg-paperAlt overflow-hidden border border-hairline mb-6">
+                        <img id="portrait-abdullah"
+                             src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=900&q=85"
+                             onerror="this.src='https://placehold.co/800x1000/F3F1EC/141414?text=Abdullah+%E2%80%A2+13+Nov'"
+                             alt="Abdullah Portrait"
+                             class="w-full h-full object-cover editorial-img">
+
+                        <!-- Discreet Upload Control -->
+                        <label for="input-abdullah" class="no-print absolute bottom-4 right-4 bg-paper/95 hover:bg-ink text-ink hover:text-paper border border-hairline px-3.5 py-2 text-[11px] uppercase tracking-[0.16em] transition-colors cursor-pointer shadow-sm">
+                            Upload Photo
+                            <input type="file" id="input-abdullah" accept="image/*" class="hidden" onchange="updateImage(event, 'portrait-abdullah', 'Abdullah\'s portrait updated')">
+                        </label>
+                    </div>
+
+                    <div class="flex items-baseline justify-between border-b border-hairline pb-3 mb-3">
+                        <h3 class="font-serif text-3xl text-ink">Abdullah</h3>
+                        <span class="text-xs uppercase tracking-[0.2em] text-champagne font-medium">13 November</span>
+                    </div>
+
+                    <p class="text-xs uppercase tracking-[0.16em] text-muted mb-3">Husband &bull; Brother at Heart</p>
+                    <p class="text-sm text-muted font-light leading-relaxed">
+                        Grounded, dependable, and genuinely kind. The sort of person whose calm presence makes everyone around him feel valued—not merely a friend, but a younger brother in every sense that matters.
+                    </p>
+                </article>
+
+                <!-- PROFILE 2: LAMIA -->
+                <article class="group">
+                    <div class="relative aspect-[4/5] w-full bg-paperAlt overflow-hidden border border-hairline mb-6">
+                        <img id="portrait-lamia"
+                             src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=900&q=85"
+                             onerror="this.src='https://placehold.co/800x1000/F3F1EC/141414?text=Lamia+%E2%80%A2+14+Nov'"
+                             alt="Lamia Portrait"
+                             class="w-full h-full object-cover editorial-img">
+
+                        <!-- Discreet Upload Control -->
+                        <label for="input-lamia" class="no-print absolute bottom-4 right-4 bg-paper/95 hover:bg-ink text-ink hover:text-paper border border-hairline px-3.5 py-2 text-[11px] uppercase tracking-[0.16em] transition-colors cursor-pointer shadow-sm">
+                            Upload Photo
+                            <input type="file" id="input-lamia" accept="image/*" class="hidden" onchange="updateImage(event, 'portrait-lamia', 'Lamia\'s portrait updated')">
+                        </label>
+                    </div>
+
+                    <div class="flex items-baseline justify-between border-b border-hairline pb-3 mb-3">
+                        <h3 class="font-serif text-3xl text-ink">Lamia</h3>
+                        <span class="text-xs uppercase tracking-[0.2em] text-champagne font-medium">14 November</span>
+                    </div>
+
+                    <p class="text-xs uppercase tracking-[0.16em] text-muted mb-3">Wife &bull; Sister in Spirit</p>
+                    <p class="text-sm text-muted font-light leading-relaxed">
+                        Warm, thoughtful, and effortlessly graceful. She brings quiet sincerity and care into every room she enters, holding the place of a cherished younger sister in our lives.
+                    </p>
+                </article>
+
+            </div>
+        </section>
+
+        <!-- 3. PERSONAL LETTER (~200 WORDS ON FINE PAPER) -->
+        <section id="letter" class="py-20 sm:py-28 border-b border-hairline fade-up">
+            <div class="max-w-2xl mx-auto">
+                <p class="text-[11px] uppercase tracking-[0.24em] text-muted text-center mb-3">02 &mdash; Personal Note</p>
+                <h2 class="font-serif text-3xl sm:text-4xl font-normal text-ink text-center mb-12">
+                    A Letter for Two Birthdays
+                </h2>
+
+                <!-- Fine Paper Letter Sheet -->
+                <div class="bg-[#FFFFFF] border border-hairline px-7 py-10 sm:px-14 sm:py-16 shadow-[0_12px_40px_-15px_rgba(20,20,20,0.06)]">
+                    <div class="flex items-center justify-between text-[11px] uppercase tracking-[0.2em] text-muted pb-6 mb-8 border-b border-hairline">
+                        <span>November 13 &amp; 14</span>
+                        <span>Dhaka</span>
+                    </div>
+
+                    <!-- ~200-Word Grounded, Sincere Birthday Letter -->
+                    <div class="space-y-5 font-serif text-xl sm:text-[22px] leading-[1.75] text-ink font-normal">
+                        <p class="italic text-2xl">Dear Abdullah and Lamia,</p>
+
+                        <p>
+                            Celebrating <span class="underline decoration-champagne/60 underline-offset-4">Abdullah on November 13th</span> and <span class="underline decoration-champagne/60 underline-offset-4">Lamia on November 14th</span> back-to-back is one of my favorite moments of the year. We may not share blood, yet over time you both have earned a place in my life that feels indistinguishable from family—truly like my own younger brother and sister.
+                        </p>
+
+                        <p>
+                            Watching the two of you build a life together as husband and wife is deeply reassuring. There is a quiet dignity, mutual respect, and warmth in the way you stand beside one another. As you step into another year, my sincere prayer is that your home remains anchored in peace, good health, and steady joy. May the work of your hands prosper, and may every new season bring you closer together.
+                        </p>
+
+                        <p>
+                            No matter how busy life becomes, know that you always have an elder brother cheering quietly for your happiness and standing in your corner. Happy Birthday to you both.
+                        </p>
+                    </div>
+
+                    <!-- Signature Block -->
+                    <div class="mt-10 pt-8 border-t border-hairline flex flex-col sm:flex-row sm:items-end justify-between gap-6">
+                        <div>
+                            <p class="text-xs uppercase tracking-[0.18em] text-muted mb-1">With genuine affection,</p>
+                            <p class="font-serif italic text-2xl text-ink">Your Elder Brother</p>
+                        </div>
+
+                        <!-- Minimal Interactive Wish Trigger -->
+                        <button id="wishBtn" onclick="sendWarmWish()" class="no-print self-start sm:self-auto px-5 py-2.5 border border-ink bg-ink text-paper hover:bg-transparent hover:text-ink text-xs uppercase tracking-[0.18em] transition-colors cursor-pointer">
+                            Send Birthday Wishes
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 4. CAPTURED MOMENTS — 4-PHOTO EDITORIAL GALLERY -->
+        <section id="gallery" class="py-20 sm:py-24 border-b border-hairline fade-up">
+            <div class="flex flex-col sm:flex-row sm:items-end justify-between mb-12 gap-3">
+                <div>
+                    <p class="text-[11px] uppercase tracking-[0.24em] text-muted mb-2">03 &mdash; Archive</p>
+                    <h2 class="font-serif text-3xl sm:text-4xl font-normal text-ink">Captured Moments</h2>
+                </div>
+                <p class="text-xs text-muted no-print">
+                    Click any frame to view full size, or <span class="text-ink underline underline-offset-4">Change Photo</span> to add your own 4 pictures.
+                </p>
+            </div>
+
+            <!-- Balanced 4-Frame Editorial Grid -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-8 sm:gap-10">
+
+                <!-- FRAME 01 -->
+                <figure class="group">
+                    <div class="relative aspect-[4/3] w-full bg-paperAlt overflow-hidden border border-hairline mb-3">
+                        <img id="moment-1"
+                             src="https://images.unsplash.com/photo-1511895426328-dc8714191300?auto=format&fit=crop&w=900&q=85"
+                             onerror="this.src='https://placehold.co/900x675/F3F1EC/141414?text=Frame+01+%E2%80%A2+13+November'"
+                             alt="Captured Moment 01"
+                             onclick="openLightbox('moment-1', '01 — November 13, Celebrating Abdullah')"
+                             class="w-full h-full object-cover editorial-img cursor-zoom-in">
+
+                        <label for="input-moment-1" class="no-print opacity-95 sm:opacity-0 sm:group-hover:opacity-100 transition-opacity absolute bottom-3 right-3 bg-paper/95 hover:bg-ink text-ink hover:text-paper border border-hairline px-3 py-1.5 text-[10px] uppercase tracking-[0.16em] cursor-pointer">
+                            Change Photo
+                            <input type="file" id="input-moment-1" accept="image/*" class="hidden" onchange="updateImage(event, 'moment-1', 'Frame 01 updated')">
+                        </label>
+                    </div>
+                    <figcaption class="flex items-center justify-between text-xs text-muted">
+                        <span>01 &mdash; November 13, Abdullah</span>
+                        <button onclick="openLightbox('moment-1', '01 — November 13, Celebrating Abdullah')" class="no-print hover:text-ink transition-colors cursor-pointer">Enlarge</button>
+                    </figcaption>
+                </figure>
+
+                <!-- FRAME 02 -->
+                <figure class="group">
+                    <div class="relative aspect-[4/3] w-full bg-paperAlt overflow-hidden border border-hairline mb-3">
+                        <img id="moment-2"
+                             src="https://images.unsplash.com/photo-1522673607200-164d1b6ce486?auto=format&fit=crop&w=900&q=85"
+                             onerror="this.src='https://placehold.co/900x675/F3F1EC/141414?text=Frame+02+%E2%80%A2+14+November'"
+                             alt="Captured Moment 02"
+                             onclick="openLightbox('moment-2', '02 — November 14, Celebrating Lamia')"
+                             class="w-full h-full object-cover editorial-img cursor-zoom-in">
+
+                        <label for="input-moment-2" class="no-print opacity-95 sm:opacity-0 sm:group-hover:opacity-100 transition-opacity absolute bottom-3 right-3 bg-paper/95 hover:bg-ink text-ink hover:text-paper border border-hairline px-3 py-1.5 text-[10px] uppercase tracking-[0.16em] cursor-pointer">
+                            Change Photo
+                            <input type="file" id="input-moment-2" accept="image/*" class="hidden" onchange="updateImage(event, 'moment-2', 'Frame 02 updated')">
+                        </label>
+                    </div>
+                    <figcaption class="flex items-center justify-between text-xs text-muted">
+                        <span>02 &mdash; November 14, Lamia</span>
+                        <button onclick="openLightbox('moment-2', '02 — November 14, Celebrating Lamia')" class="no-print hover:text-ink transition-colors cursor-pointer">Enlarge</button>
+                    </figcaption>
+                </figure>
+
+                <!-- FRAME 03 -->
+                <figure class="group">
+                    <div class="relative aspect-[4/3] w-full bg-paperAlt overflow-hidden border border-hairline mb-3">
+                        <img id="moment-3"
+                             src="https://images.unsplash.com/photo-1529634806980-85c3dd6d34ac?auto=format&fit=crop&w=900&q=85"
+                             onerror="this.src='https://placehold.co/900x675/F3F1EC/141414?text=Frame+03+%E2%80%A2+Together'"
+                             alt="Captured Moment 03"
+                             onclick="openLightbox('moment-3', '03 — Shared Days & Quiet Laughter')"
+                             class="w-full h-full object-cover editorial-img cursor-zoom-in">
+
+                        <label for="input-moment-3" class="no-print opacity-95 sm:opacity-0 sm:group-hover:opacity-100 transition-opacity absolute bottom-3 right-3 bg-paper/95 hover:bg-ink text-ink hover:text-paper border border-hairline px-3 py-1.5 text-[10px] uppercase tracking-[0.16em] cursor-pointer">
+                            Change Photo
+                            <input type="file" id="input-moment-3" accept="image/*" class="hidden" onchange="updateImage(event, 'moment-3', 'Frame 03 updated')">
+                        </label>
+                    </div>
+                    <figcaption class="flex items-center justify-between text-xs text-muted">
+                        <span>03 &mdash; Shared Days</span>
+                        <button onclick="openLightbox('moment-3', '03 — Shared Days & Quiet Laughter')" class="no-print hover:text-ink transition-colors cursor-pointer">Enlarge</button>
+                    </figcaption>
+                </figure>
+
+                <!-- FRAME 04 -->
+                <figure class="group">
+                    <div class="relative aspect-[4/3] w-full bg-paperAlt overflow-hidden border border-hairline mb-3">
+                        <img id="moment-4"
+                             src="https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=900&q=85"
+                             onerror="this.src='https://placehold.co/900x675/F3F1EC/141414?text=Frame+04+%E2%80%A2+The+Year+Ahead'"
+                             alt="Captured Moment 04"
+                             onclick="openLightbox('moment-4', '04 — To the Year Ahead')"
+                             class="w-full h-full object-cover editorial-img cursor-zoom-in">
+
+                        <label for="input-moment-4" class="no-print opacity-95 sm:opacity-0 sm:group-hover:opacity-100 transition-opacity absolute bottom-3 right-3 bg-paper/95 hover:bg-ink text-ink hover:text-paper border border-hairline px-3 py-1.5 text-[10px] uppercase tracking-[0.16em] cursor-pointer">
+                            Change Photo
+                            <input type="file" id="input-moment-4" accept="image/*" class="hidden" onchange="updateImage(event, 'moment-4', 'Frame 04 updated')">
+                        </label>
+                    </div>
+                    <figcaption class="flex items-center justify-between text-xs text-muted">
+                        <span>04 &mdash; To the Year Ahead</span>
+                        <button onclick="openLightbox('moment-4', '04 — To the Year Ahead')" class="no-print hover:text-ink transition-colors cursor-pointer">Enlarge</button>
+                    </figcaption>
+                </figure>
+
+            </div>
+        </section>
+
+        <!-- 5. EDITORIAL COLOPHON / FOOTER -->
+        <footer class="py-16 text-center space-y-3">
+            <p class="font-serif italic text-2xl text-ink">
+                Abdullah &amp; Lamia
+            </p>
+            <p class="text-[11px] uppercase tracking-[0.24em] text-muted">
+                November 13 &amp; November 14 &bull; Digital Keepsake Edition
+            </p>
+        </footer>
+
+    </main>
+
+    <!-- CLEAN FULLSCREEN LIGHTBOX -->
+    <div id="lightbox" onclick="closeLightbox()" class="fixed inset-0 z-50 bg-[#141414]/92 backdrop-blur-sm hidden items-center justify-center p-6 sm:p-10 no-print">
+        <div class="max-w-4xl w-full space-y-4" onclick="event.stopPropagation()">
+            <div class="flex items-center justify-between text-xs uppercase tracking-[0.18em] text-[#FAF9F6]/80">
+                <span id="lightboxLabel">Frame</span>
+                <button onclick="closeLightbox()" class="text-[#FAF9F6] hover:opacity-70 cursor-pointer">Close [ESC]</button>
+            </div>
+            <div class="bg-[#1E1E1E] border border-white/10 flex items-center justify-center overflow-hidden">
+                <img id="lightboxImg" src="" alt="Full view" class="max-h-[78vh] w-auto object-contain">
+            </div>
+        </div>
+    </div>
+
+    <!-- JAVASCRIPT: PHOTO UPLOADS, LIGHTBOX, SCROLL REVEAL & SUBTLE CHAMPAGNE CONFETTI -->
+    <script>
+        // 1. Seamless Local Photo Replacement
+        function updateImage(event, imgId, message) {
+            const file = event.target.files[0];
+            if (!file) return;
+
+            if (!file.type.startsWith('image/')) {
+                showToast('Please select a valid image file.');
+                return;
+            }
+
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                const target = document.getElementById(imgId);
+                if (target) {
+                    target.src = e.target.result;
+                    showToast(message);
+                }
+            };
+            reader.readAsDataURL(file);
+        }
+
+        // 2. Minimal Toast Feedback
+        let toastTimer;
+        function showToast(text) {
+            const toast = document.getElementById('toast');
+            const toastText = document.getElementById('toastText');
+            toastText.textContent = text;
+            toast.classList.remove('translate-y-6', 'opacity-0');
+            toast.classList.add('translate-y-0', 'opacity-100');
+
+            clearTimeout(toastTimer);
+            toastTimer = setTimeout(() => {
+                toast.classList.remove('translate-y-0', 'opacity-100');
+                toast.classList.add('translate-y-6', 'opacity-0');
+            }, 2800);
+        }
+
+        // 3. Lightbox Controls
+        function openLightbox(imgId, caption) {
+            const source = document.getElementById(imgId);
+            const lightbox = document.getElementById('lightbox');
+            const lightboxImg = document.getElementById('lightboxImg');
+            const lightboxLabel = document.getElementById('lightboxLabel');
+
+            if (source && lightbox) {
+                lightboxImg.src = source.src;
+                lightboxLabel.textContent = caption;
+                lightbox.classList.remove('hidden');
+                lightbox.classList.add('flex');
+            }
+        }
+
+        function closeLightbox() {
+            const lightbox = document.getElementById('lightbox');
+            if (lightbox) {
+                lightbox.classList.add('hidden');
+                lightbox.classList.remove('flex');
+            }
+        }
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') closeLightbox();
+        });
+
+        // 4. Intersection Observer for Quiet Editorial Scroll Reveal
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.12 });
+
+        document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+        // 5. Tasteful Champagne-Gold Confetti Burst on Wish Button Click
+        const canvas = document.getElementById('confettiCanvas');
+        const ctx = canvas.getContext('2d');
+        let ribbons = [];
+        let animating = false;
+
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas();
+
+        function sendWarmWish() {
+            const btn = document.getElementById('wishBtn');
+            btn.textContent = 'Wishes Sent — Nov 13 & 14';
+            showToast('Warm birthday wishes sent to Abdullah & Lamia.');
+
+            // Refined metallic & neutral paper tones (no neon colors)
+            const palette = ['#B89658', '#D4AF37', '#141414', '#8C7A5B', '#E5DEC9'];
+            const originX = window.innerWidth / 2;
+            const originY = window.innerHeight * 0.65;
+
+            for (let i = 0; i < 65; i++) {
+                const angle = -Math.PI / 2 + (Math.random() - 0.5) * 1.4;
+                const velocity = Math.random() * 9 + 4;
+                ribbons.push({
+                    x: originX + (Math.random() - 0.5) * 120,
+                    y: originY,
+                    vx: Math.cos(angle) * velocity,
+                    vy: Math.sin(angle) * velocity,
+                    w: Math.random() * 6 + 3,
+                    h: Math.random() * 3 + 2,
+                    rotation: Math.random() * Math.PI * 2,
+                    vRot: (Math.random() - 0.5) * 0.15,
+                    color: palette[Math.floor(Math.random() * palette.length)],
+                    alpha: 1
+                });
+            }
+
+            if (!animating) {
+                animating = true;
+                renderConfetti();
+            }
+        }
+
+        function renderConfetti() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            for (let i = ribbons.length - 1; i >= 0; i--) {
+                const p = ribbons[i];
+                p.vx *= 0.985;
+                p.vy += 0.22; // gentle gravity
+                p.x += p.vx;
+                p.y += p.vy;
+                p.rotation += p.vRot;
+                p.alpha -= 0.009;
+
+                if (p.alpha <= 0 || p.y > canvas.height + 20) {
+                    ribbons.splice(i, 1);
+                    continue;
+                }
+
+                ctx.save();
+                ctx.translate(p.x, p.y);
+                ctx.rotate(p.rotation);
+                ctx.globalAlpha = p.alpha;
+                ctx.fillStyle = p.color;
+                ctx.fillRect(-p.w / 2, -p.h / 2, p.w, p.h);
+                ctx.restore();
+            }
+
+            if (ribbons.length > 0) {
+                requestAnimationFrame(renderConfetti);
+            } else {
+                animating = false;
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+            }
+        }
+    </script>
+</body>
+          </html>
